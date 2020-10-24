@@ -11,7 +11,6 @@ class Markov
     {
         this.size=this.nodes.push(String.fromCharCode(this.nodes[this.nodes.length-1].charCodeAt(0)+1));
         this.trans.resize([this.size,this.size]);
-        this.size++;
     }
     removeNode()
     {
@@ -19,7 +18,7 @@ class Markov
         {
             this.nodes.pop();
             this.trans.resize([this.nodes.length,this.nodes.length]);
-            this.size=this.size-1;
+            this.size--;
         }
     }
     changeState()

@@ -14,7 +14,7 @@ function invalid(object,value)
     else if (value>1) value=1;
 }
 
-var mark;
+mark=new Markov();
 function create()
 {
     mark=new Markov();
@@ -28,7 +28,7 @@ function add()
 
     $("#table tr").each(function()
     {        
-        for (let nCurrent=$(this).children().length+1; nCurrent < mark.size; nCurrent++)
+        for (let nCurrent=$(this).children().length; nCurrent < mark.size; nCurrent++)
          {
             $(this).append('<td><input class="cell" type="number" step="0.01" min="0.0" max="1.0" value="0" oninvalid="invalid(this,this.value)" oninput="check(this,this.value)"></input></td>');            
         }
@@ -37,7 +37,17 @@ function add()
 
 function remove()
 {
+    if (mark.size>1)
+    {
     mark.removeNode();
+    $("#table tr").last().remove();
+
+    $("#table tr").each(function()
+    {        
+        $(this).children().last().remove();
+    });
+    }
+
     
 }
 
@@ -46,4 +56,22 @@ function print()
     mark.nodes.forEach(function (value, index, matrix) {
         console.log('value:', value, 'index:', index) 
       })
+      console.log('size:',mark.size)  
+}
+function drawNode()
+{
+
+    // Store the canvas object into a variable
+    var $myCanvas = $('#canvas');
+    
+    // rectangle shape 
+    $myCanvas.drawRect({
+      fillStyle: 'steelblue',
+      strokeStyle: 'blue',
+      strokeWidth: 4,
+      x: 150, y: 100,
+      fromCenter: false,
+      width: 200,
+      height: 100
+    });
 }
