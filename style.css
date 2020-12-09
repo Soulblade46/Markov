@@ -35,3 +35,9 @@ footer {
   }
   .row.content {height:auto;} 
 }
+
+#mynetwork {
+  width: 600px;
+  height: 600px;
+  border: 1px solid lightgray;
+}
